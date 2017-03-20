@@ -15,7 +15,7 @@ import org.junit.runners.JUnit4;
 
 import junit.framework.TestCase;
 
-@RunWith ( JUnit4. class )
+@RunWith(JUnit4.class)
 public class AlarmClockTest extends TestCase {
 
 	@Rule
