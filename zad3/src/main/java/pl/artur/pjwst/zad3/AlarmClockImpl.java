@@ -7,15 +7,15 @@ import org.joda.time.DateTime;
 public class AlarmClockImpl implements AlarmClock {
 
 	private ArrayList<DateTime> alarmList = new ArrayList<DateTime>();
+	private MyTime now;
 	
 	public boolean shouldRing() {
 		boolean shouldRing = false;
 		
-		DateTime now = new DateTime();
 		
 		for (DateTime tmpDate : alarmList)
 		{
-			if (tmpDate.withTimeAtStartOfDay().isEqual(now.withTimeAtStartOfDay()))
+			if (tmpDate.withTimeAtStartOfDay().isEqual(now.getTime().withTimeAtStartOfDay()))
 			{
 				shouldRing=true;
 			}

@@ -25,15 +25,15 @@ public class AlarmClockTest extends TestCase {
     public AlarmClock alarmClock = new AlarmClockImpl();
 
     @Mock
-    public DateTime now = new DateTime();
+    public MyTime now;
 	
 	@Test
 	public void testAlarmShouldRing() {
 		DateTime timeRing = new DateTime(1995,1,1,12,30);
         alarmClock.addAlarmTime(timeRing);
-        expect(now.withTimeAtStartOfDay())
+        expect(now.getTime())
                 .andReturn(new DateTime(1995,1,1,12,30))
-                .andReturn(new DateTime(1995,1,1,12,30)).times(2)
+                .andReturn(new DateTime(1995,2,1,12,30)).times(2)
                 .andReturn(new DateTime(1995,1,1,12,30));
         replay(now);
         assertEquals(true, alarmClock.shouldRing());
