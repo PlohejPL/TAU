@@ -1,6 +1,7 @@
 package pl.edu.pjatk.tau;
 
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.joda.time.DateTime;
@@ -22,7 +23,7 @@ public class AlarmSteps {
     MyTime now = mock(MyTime.class);
 
     @Given("You set up alarm for Wolfgang for the $alarmTime he wants")
-    public void setAlarmForWolfgang(String alarmTime){
+    public void setAlarmForWolfgang(@Named("alarmTime") String alarmTime){
         alarmClock  = new AlarmClockImpl();
         alarmClock.addAlarmTime(
         		new DateTime(Integer.parseInt(alarmTime.substring(0, 3)),
@@ -33,7 +34,7 @@ public class AlarmSteps {
     }
 
     @When("The time of alarm is the $currentTime Walfgang wants to wake up")
-    public void theTimeOfAlarmIsTheTime(String currentTime){
+    public void theTimeOfAlarmIsTheTime(@Named("currentTime") String currentTime){
         //alarmClock.shouldRing();
         given(now.getTime()).willReturn(
         	new DateTime(Integer.parseInt(currentTime.substring(0, 3)),
@@ -44,7 +45,7 @@ public class AlarmSteps {
     }
 
     @Then("You will be told weather the time is right $result")
-    public void tellResult(Boolean result) {
+    public void tellResult(@Named("result") Boolean result) {
         assertEquals(result, alarmClock.shouldRing());
     }
 }
