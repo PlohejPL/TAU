@@ -34,22 +34,47 @@ public class LoginTest {
 
 	@Test
 	public void homePage(){
-		driver.get("http://www.teleman.pl");
+		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
 		
-		element = driver.findElement(By.linkText("Polsat"));
+		element = driver.findElement(By.linkText("Panel administracyjny"));
 		assertNotNull(element);
 	}
 	
 	@Test
 	public void polsatPage(){
-		driver.get("http://www.teleman.pl/");
-		driver.findElement(By.linkText("Polsat")).click();
-		element = driver.findElement(By.linkText("Polsat"));
+		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	    assertNotNull(screenshot);
-
 		try {
-			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/polsat.png"));
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/beforelogin.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		
+		driver.findElement(By.linkText("Panel administracyjny")).click();
+		element = driver.findElement(By.name("password"));
+		element.sendKeys("haslo");
+		element.submit();
+		screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		try {
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/loginresult.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		element = driver.findElement(By.id("Wyloguj"));
+		assertNotNull(element);
+		element.click();
+		
+		
+		screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		try {
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/logoutresult.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			assertTrue(false);
