@@ -11,7 +11,9 @@ import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +43,7 @@ public class LoginTest {
 	}
 	
 	@Test
-	public void polsatPage(){
+	public void adminLogin(){
 		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	    assertNotNull(screenshot);
@@ -81,6 +83,34 @@ public class LoginTest {
 		}
 		
 	}
+	
+	@Test
+	public void javascriptTest(){
+		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
+		JavascriptExecutor js=null;
+		if (driver instanceof JavascriptExecutor) {
+		    js = (JavascriptExecutor)driver;
+		    js.executeScript("function showAlert() { alert('success'); }; showAlert()");
+		    Alert alert = driver.switchTo().alert();
+		    alert.dismiss();
+		}
+		assertNotNull(js);
+	}
+	
+	@Test
+	public void jQueryTest(){
+		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
+		/*JavascriptExecutor js=null;
+		if (driver instanceof JavascriptExecutor) {
+		    js = (JavascriptExecutor)driver;
+		    js.executeScript("function showAlert() { alert('success'); }; showAlert()");
+		}
+		assertNotNull(js);*/
+		WebElement element = (WebElement) ((JavascriptExecutor)driver).executeScript("return $('.cheese')[0]");
+		assertNotNull(element);
+	}
+
+
 
 	@AfterClass
 	public static void cleanp() {
