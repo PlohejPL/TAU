@@ -14,9 +14,11 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -84,6 +86,48 @@ public class LoginTest {
 		
 	}
 	
+	@Test (expected = NoSuchElementException.class)
+	public void badLogin(){
+		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
+		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		try {
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/beforelogin-bad.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		
+		driver.findElement(By.linkText("Panel administracyjny")).click();
+		element = driver.findElement(By.name("password"));
+		element.sendKeys("zlehaslo");
+		element.submit();
+		screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		try {
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/loginresult-bad.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		element = driver.findElement(By.id("Wyloguj"));
+		assertNotNull(element);
+		if (element != null) element.click();
+		
+		
+		screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    assertNotNull(screenshot);
+		try {
+			FileUtils.copyFile(screenshot, new File("E:/tmp/TAU-selenium-screens/logoutresult-bad.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+	}
+	
 	@Test
 	public void javascriptTest(){
 		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
@@ -97,7 +141,7 @@ public class LoginTest {
 		assertNotNull(js);
 	}
 	
-	@Test
+	@Test (expected = WebDriverException.class)
 	public void jQueryTest(){
 		driver.get("http://localhost/Projekt-komis_samochodowy/index.php?akcja=brak");
 		/*JavascriptExecutor js=null;
