@@ -21,7 +21,7 @@ public class SiteSteps {
         pages.carSite().openPage();
     }
 
-    @When("admin click administration panel, writes his password $password and clicks login")
+    @When("admin click administration panel, writes his password and clicks login")
     public void userClicksTabLink(String password) {
         pages.carSite().login(password);
     }
