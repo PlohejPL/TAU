@@ -1,7 +1,8 @@
 package pl.edu.pjatk.zad06_selenium_jbhave;
 
 import org.jbehave.web.selenium.WebDriverProvider;
-import pl.edu.pjatk.zad06_selenium_jbhave.pages.HelpDesk;
+
+import pl.edu.pjatk.zad06_selenium_jbhave.pages.CarSite;
 
 
 public class Pages {
@@ -9,17 +10,17 @@ public class Pages {
     private WebDriverProvider driverProvider;
 
     //Pages -- moze byc ich kilka
-    private HelpDesk helpDesk;
+    private CarSite carSite;
 
     public Pages(WebDriverProvider driverProvider) {
         super();
         this.driverProvider = driverProvider;
     }
 
-    public HelpDesk helpdesk() {
-        if (helpDesk == null) {
-            helpDesk = new HelpDesk(driverProvider);
+    public CarSite carSite() {
+        if (carSite == null) {
+        	carSite = new CarSite(driverProvider);
         }
-        return helpDesk;
+        return carSite;
     }
 }

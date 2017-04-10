@@ -16,23 +16,24 @@ public class SiteSteps {
         this.pages = pages;
     }
 
-    @Given("user is on helpdesk page")
+    @Given("admin is on main page")
     public void userOnHelpdeskPage(){
-        pages.helpdesk().open();
+        pages.carSite().openPage();
     }
 
-    @When("user clicks the $linkText tab")
-    public void userClicksTabLink(String linkText) {
-        pages.helpdesk().click(linkText);
+    @When("admin click administration panel, writes his password $password and clicks login")
+    public void userClicksTabLink(String password) {
+        pages.carSite().login(password);
     }
 
-    @Then("the tab with text $linkText should have class $classInside")
-    public void tabWithTextAndClass(String linkText, String classInside) {
-        assertTrue( pages.helpdesk().getClassesForLink(linkText).contains(classInside));
+    @Then("a element called Wyloguj should appear on page")
+    public void tabWithTextAndClass() {
+        assertTrue( pages.carSite().getWyloguj().equals("Wyloguj"));
     }
 
-    @Then("the tab with text $linkText should not have class $classInside")
-    public void tabWithTextAndNotClass(String linkText, String classInside) {
-        assertTrue( !pages.helpdesk().getClassesForLink(linkText).contains(classInside));
-    }
+    /*
+     * Given admin is on main page
+	When admin click administration panel, writes his password haslo and clicks login
+	Then a element called Wyloguj should appear on page
+*/
 }
