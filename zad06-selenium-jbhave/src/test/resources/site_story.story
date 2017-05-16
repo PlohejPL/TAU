@@ -1,10 +1,7 @@
-Scenario:  Admin can login to his account on page by writing his password
+Scenario: Admin can login to his account on page by writing his password
 
 Given admin is on main page
-When admin click administration panel, writes his password haslo and clicks login
-Then a element called Wyloguj should appear on page
+When admin click administration panel dna writes his password haslo dna clicks login
+Then element called Wyloguj should appear on page
 
-Given admin is on main page
-When admin click administration panel, writes his password haslo and clicks login
-Then a element called Wyloguj should appear on page
 

@@ -39,7 +39,7 @@ public class SiteStories extends JUnitStories {
                 "C:/Users/Art/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe"
         );
 //         System.setProperty("webdriver.chrome.driver", "/..../chromedriver/chromedriver");
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Art/Downloads/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:/Users/Art/Downloads/chromedriver.exe");
         driverProvider.initialize();
     }
 

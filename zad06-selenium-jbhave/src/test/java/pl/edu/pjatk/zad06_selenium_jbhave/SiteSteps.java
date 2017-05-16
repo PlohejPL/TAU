@@ -21,12 +21,12 @@ public class SiteSteps {
         pages.carSite().openPage();
     }
 
-    @When("admin click administration panel, writes his password and clicks login")
+    @When("admin click administration panel dna writes his password haslo dna clicks login")
     public void userClicksTabLink(String password) {
         pages.carSite().login(password);
     }
 
-    @Then("a element called Wyloguj should appear on page")
+    @Then("element called Wyloguj should appear on page")
     public void tabWithTextAndClass() {
         assertTrue( pages.carSite().getWyloguj().equals("Wyloguj"));
     }
