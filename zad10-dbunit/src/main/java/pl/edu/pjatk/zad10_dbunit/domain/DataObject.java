@@ -4,7 +4,7 @@ public class DataObject {
 	
 	private long id;
 	
-	private String color;\
+	private String color;
 	private String currency;
 	private String iban;
 	

@@ -81,6 +81,7 @@ public class DataManagerTest extends DBTestCase {
 		assertEquals(1, dataManager.addData(data));
 
         // Data verification
+		System.out.println("CHECK ADDING ------------------");
 
         IDataSet dbDataSet = this.getConnection().createDataSet();
         ITable actualTable = dbDataSet.getTable("MOCK_DATA");
@@ -91,5 +92,5 @@ public class DataManagerTest extends DBTestCase {
 
         Assertion.assertEquals(expectedTable, filteredTable);
     }
-
+	
 }

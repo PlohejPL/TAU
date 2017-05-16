@@ -15,8 +15,17 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 
 public class ExportDatabase {
     public static void main(String[] args) throws Exception {
+    	//jdbc:hsqldb:hsql://localhost/workdb
+    	try {
+            Class.forName("org.hsqldb.jdbcDriver" );
+        } catch (Exception e) {
+            System.out.println("ERROR: failed to load HSQLDB JDBC driver.");
+            e.printStackTrace();
+            return;
+        }
+    	//Class.forName("org.hsqldb.jdbcDriver").newInstance();
         Connection jdbcConnection = DriverManager.getConnection(
-                "jdbc:hsqldb:hsql://localhost/workdb", "sa", "");
+                "jdbc:hsqldb:hsql://localhost/workdb", "SA", "");
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
         FlatXmlDataSet.write(connection.createDataSet(),
