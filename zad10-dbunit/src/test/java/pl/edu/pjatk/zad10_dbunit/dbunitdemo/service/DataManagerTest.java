@@ -15,19 +15,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import pl.edu.pjatk.zad10_dbunit.domain.Person;
-import pl.edu.pjatk.zad10_dbunit.service.PersonManager;
-import pl.edu.pjatk.zad10_dbunit.service.PersonManagerImpl;
+import pl.edu.pjatk.zad10_dbunit.domain.DataObject;
+import pl.edu.pjatk.zad10_dbunit.service.DataManager;
+import pl.edu.pjatk.zad10_dbunit.service.DataManagerImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
 
 @RunWith(JUnit4.class)
-public class PersonManagerTest extends DBTestCase {
-	PersonManager personManager;
+public class DataManagerTest extends DBTestCase {
+	DataManager dataManager;
 
-    public PersonManagerTest() throws Exception {
-        super("PersonManagerImpl test");
+    public DataManagerTest() throws Exception {
+        super("DataManagerImpl test");
     }
 
     protected DatabaseOperation getSetUpOperation() throws Exception {
@@ -68,25 +68,26 @@ public class PersonManagerTest extends DBTestCase {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        personManager = new PersonManagerImpl(this.getConnection().getConnection());
+        dataManager = new DataManagerImpl(this.getConnection().getConnection());
     }
 	
 	@Test
 	public void checkAdding() throws Exception {
-		Person person = new Person();
-		person.setName("Janek");
-		person.setYob(1939);
+		DataObject data = new DataObject();
+		data.setColor("Janek");
+		data.setCurrency("sad");
+		data.setIban("sdasdga882hjfsn");
 
-		assertEquals(1, personManager.addPerson(person));
+		assertEquals(1, dataManager.addData(data));
 
         // Data verification
 
         IDataSet dbDataSet = this.getConnection().createDataSet();
-        ITable actualTable = dbDataSet.getTable("PERSON");
+        ITable actualTable = dbDataSet.getTable("MOCK_DATA");
         ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
                 (actualTable, new String[]{"ID"});
         IDataSet expectedDataSet = getDataSet("dataset-pm-add-check.xml");
-        ITable expectedTable = expectedDataSet.getTable("PERSON");
+        ITable expectedTable = expectedDataSet.getTable("MOCK_DATA");
 
         Assertion.assertEquals(expectedTable, filteredTable);
     }

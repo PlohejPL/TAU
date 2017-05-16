@@ -20,9 +20,9 @@ public class ExportDatabase {
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
         FlatXmlDataSet.write(connection.createDataSet(),
-                new FileOutputStream("src/test/resources/databaseDump.xml"));
+                new FileOutputStream("databaseDump.xml"));
         FlatDtdDataSet.write(connection.createDataSet(),
-                new FileOutputStream("src/test/resources/databaseDump.dtd"));
+                new FileOutputStream("databaseDump.dtd"));
     }
 
 }
