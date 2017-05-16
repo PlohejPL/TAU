@@ -1,0 +1,5 @@
+<dataset>
+	<MOCK_DATA color="Red" currency="PLN" iban="ASD" />
+	<MOCK_DATA color="Pink" currency="DOLLAR" iban="DSA" />
+	<MOCK_DATA color="Yellow" currency="ZIMBABWE" iban="SAD" />
+</dataset>
