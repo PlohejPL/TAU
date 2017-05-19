@@ -2,4 +2,6 @@
 	<MOCK_DATA color="Red" currency="PLN" iban="29cc730896820a02b3ffc0e4c6971fa5" />
 	<MOCK_DATA color="Pink" currency="DOLLAR" iban="DSA" />
 	<MOCK_DATA color="Yellow" currency="ZIMBABWE" iban="SAD" />
+	<MOCK_DATA color="Green" currency="YEN" iban="DDS" />
+	<MOCK_DATA color="Retarded Purple" currency="DESKI HEBANOWE" iban="ud2afvtcvab3y" />
 </dataset>

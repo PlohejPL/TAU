@@ -35,7 +35,7 @@ public class DataManagerTest extends DBTestCase {
     }
 
     protected DatabaseOperation getTearDownOperation() throws Exception {
-        return DatabaseOperation.TRUNCATE_TABLE;
+        return DatabaseOperation.NONE;
     }
 
     /**
@@ -67,6 +67,7 @@ public class DataManagerTest extends DBTestCase {
 
     @Before
     public void setUp() throws Exception {
+    	System.out.println("ASLDASDASD ------------------");
         super.setUp();
         dataManager = new DataManagerImpl(this.getConnection().getConnection());
     }
@@ -74,9 +75,9 @@ public class DataManagerTest extends DBTestCase {
 	@Test
 	public void checkAdding() throws Exception {
 		DataObject data = new DataObject();
-		data.setColor("Janek");
-		data.setCurrency("sad");
-		data.setIban("sdasdga882hjfsn");
+		data.setColor("Retarded Purple");
+		data.setCurrency("DESKI HEBANOWE");
+		data.setIban("ud2a3fvtcvab3y");
 
 		assertEquals(1, dataManager.addData(data));
 
