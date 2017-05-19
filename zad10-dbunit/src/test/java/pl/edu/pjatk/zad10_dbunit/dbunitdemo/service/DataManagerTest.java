@@ -35,7 +35,7 @@ public class DataManagerTest extends DBTestCase {
     }
 
     protected DatabaseOperation getTearDownOperation() throws Exception {
-        return DatabaseOperation.NONE;
+        return DatabaseOperation.TRUNCATE_TABLE;
     }
 
     /**
@@ -77,7 +77,7 @@ public class DataManagerTest extends DBTestCase {
 		DataObject data = new DataObject();
 		data.setColor("Retarded Purple");
 		data.setCurrency("DESKI HEBANOWE");
-		data.setIban("ud2a3fvtcvab3y");
+		data.setIban("ud2afvtcvab3y");
 
 		assertEquals(1, dataManager.addData(data));
 
