@@ -16,18 +16,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import pl.edu.pjatk.zad10_dbunit.domain.DataObject;
+import pl.edu.pjatk.zad10_dbunit.domain.Person;
 import pl.edu.pjatk.zad10_dbunit.service.DataManager;
 import pl.edu.pjatk.zad10_dbunit.service.DataManagerImpl;
+import pl.edu.pjatk.zad10_dbunit.service.PersonManager;
+import pl.edu.pjatk.zad10_dbunit.service.PersonManagerImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
 
 @RunWith(JUnit4.class)
-public class DataManagerTest extends DBTestCase {
+public class RelationTest extends DBTestCase {
 	DataManager dataManager;
+	PersonManager personManager;
 
-    public DataManagerTest() throws Exception {
-        super("DataManagerImpl test");
+    public RelationTest() throws Exception {
+        super("RELATION test");
     }
 
     protected DatabaseOperation getSetUpOperation() throws Exception {
@@ -69,27 +73,55 @@ public class DataManagerTest extends DBTestCase {
     public void setUp() throws Exception {
         super.setUp();
         dataManager = new DataManagerImpl(this.getConnection().getConnection());
+        personManager = new PersonManagerImpl(this.getConnection().getConnection());
     }
 	
 	@Test
-	public void checkAdding() throws Exception {
+	public void checkRelation() throws Exception {
 		DataObject data = new DataObject();
 		data.setColor("Retarded Purple");
 		data.setCurrency("DESKI HEBANOWE");
 		data.setIban("ud2afvtcvab3y");
 
 		assertEquals(1, dataManager.addData(data));
+		int id=-1;
+		
+		for (DataObject daOb : dataManager.getAllData())
+		{
+			if (daOb.getCurrency() == "DESKI HEBANOWE")
+			{
+				id = (int) daOb.getId();
+			}
+		}
+		
+		Person person = new Person();
+		person.setName("Janek");
+		person.setYob(id);
+
+		assertEquals(1, personManager.addPerson(person));
 
         // Data verification
-
-        IDataSet dbDataSet = this.getConnection().createDataSet();
-        ITable actualTable = dbDataSet.getTable("MOCK_DATA");
-        ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
-                (actualTable, new String[]{"ID"});
-        IDataSet expectedDataSet = getDataSet("dataset-pm-add-check.xml");
-        ITable expectedTable = expectedDataSet.getTable("MOCK_DATA");
-
-        Assertion.assertEquals(expectedTable, filteredTable);
+        
+        DataObject testDO=new DataObject();
+		Person testP=new Person();
+		for (DataObject daOb : dataManager.getAllData())
+		{
+			if (daOb.getCurrency() == "DESKI HEBANOWE")
+			{
+				testDO = daOb;
+			}
+		}
+		
+		for (Person pe : personManager.getAllPersons())
+		{
+			if (pe.getYob() == testDO.getId())
+			{
+				testP = pe;
+			}
+		}
+		
+		assertEquals(testDO.getId(), testP.getYob());
+		
     }
 	
 }

@@ -1,4 +1,6 @@
 <dataset>
+    <PERSON NAME="Stefan" YOB="1090" />
+    <PERSON NAME="Genowefa" YOB="2011" />
 	<MOCK_DATA color="Red" currency="PLN" iban="PDF" />
 	<MOCK_DATA color="Pink" currency="DOLLAR" iban="DSA" />
 	<MOCK_DATA color="Yellow" currency="ZIMBABWE" iban="SAD" />
