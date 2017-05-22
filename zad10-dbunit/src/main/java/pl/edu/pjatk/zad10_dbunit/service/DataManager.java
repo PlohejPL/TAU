@@ -13,4 +13,6 @@ public interface DataManager {
 	public Connection getConnection();
 	public int addData(DataObject data);
 	public List<DataObject> getAllData();
+	public int updateData(DataObject data);
+	public int deleteData(int id);
 }

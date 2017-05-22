@@ -92,4 +92,58 @@ public class DataManagerTest extends DBTestCase {
         Assertion.assertEquals(expectedTable, filteredTable);
     }
 	
+	@Test
+	public void checkUpdate() throws Exception {
+		DataObject data = new DataObject();
+		final String color = "Piano Black";
+		final String currencyBefore = "MANGO";
+		final String currencyAfter = "ZIARNA KAKAOWCA";
+		final String iban = "MANGGGO";
+		
+		data.setColor(color);
+		data.setCurrency(currencyBefore);
+		data.setIban(iban);
+		data.setId(0);
+
+		assertEquals(1, dataManager.addData(data));
+		for (DataObject daOb : dataManager.getAllData()) {
+			if (daOb.getCurrency().equals(currencyBefore))	{
+				data.setId(daOb.getId());
+			}
+		}
+		data.setCurrency(currencyAfter);
+		assertEquals(1, dataManager.updateData(data));
+		
+		for (DataObject daOb : dataManager.getAllData()) {
+			if (daOb.getCurrency().equals(currencyAfter)) {
+				data=daOb;
+			}
+		}	
+		
+		assertEquals(data.getColor(), color);
+		assertEquals(data.getCurrency(), currencyAfter);
+		assertEquals(data.getIban(), iban);
+    }
+	
+	@Test
+	public void checkDelete() throws Exception {
+		final String currency = "KASZTANY";
+		DataObject data = new DataObject();
+		data.setColor("Albino");
+		data.setCurrency(currency);
+		data.setIban("ibanxdxp");
+		data.setId(0);
+
+		assertEquals(1, dataManager.addData(data));
+		
+		for (DataObject daOb : dataManager.getAllData()) {
+			//System.out.println(daOb.getId() + " " + daOb.getColor() + " " + daOb.getCurrency());
+			if (daOb.getCurrency().equals(currency))	{
+				data.setId(daOb.getId());
+			}
+		}	
+		//System.out.println(data.getId());
+		assertEquals(1, dataManager.deleteData( (int)data.getId() ));
+    }
+	
 }
