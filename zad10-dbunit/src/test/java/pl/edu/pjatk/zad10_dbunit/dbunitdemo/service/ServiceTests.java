@@ -5,10 +5,14 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.hsqldb.jdbc.JDBCConnection;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import pl.edu.pjatk.zad10_dbunit.service.DataManagerImpl;
+import pl.edu.pjatk.zad10_dbunit.service.PersonManagerImpl;
 
 
 @RunWith(Suite.class)
@@ -25,6 +29,9 @@ public class ServiceTests {
 
         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
 
+        new DataManagerImpl(new JDBCConnection(databaseTester.getConnection().getConnection()));
+        new PersonManagerImpl(new JDBCConnection(databaseTester.getConnection().getConnection()));
+        
         FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
                 ServiceTests.class.getClassLoader().
                         getResource("dataset-pm.xml").openStream()
