@@ -6,6 +6,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.hsqldb.jdbc.JDBCConnection;
+import org.hsqldb.persist.HsqlProperties;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -29,8 +30,8 @@ public class ServiceTests {
 
         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
 
-        new DataManagerImpl(new JDBCConnection(databaseTester.getConnection().getConnection()));
-        new PersonManagerImpl(new JDBCConnection(databaseTester.getConnection().getConnection()));
+        new DataManagerImpl(databaseTester.getConnection().getConnection());
+        new PersonManagerImpl(databaseTester.getConnection().getConnection());
         
         FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
                 ServiceTests.class.getClassLoader().
