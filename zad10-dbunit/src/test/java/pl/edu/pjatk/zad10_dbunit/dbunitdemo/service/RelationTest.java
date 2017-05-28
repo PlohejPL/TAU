@@ -24,6 +24,7 @@ import pl.edu.pjatk.zad10_dbunit.service.PersonManagerImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
 @RunWith(JUnit4.class)
@@ -77,53 +78,6 @@ public class RelationTest extends DBTestCase {
         personManager = new PersonManagerImpl(this.getConnection().getConnection());
     }
 	
-	@Test
-	public void checkRelation() throws Exception {
-		DataObject data = new DataObject();
-		data.setColor("Retarded Purple");
-		data.setCurrency("DESKI HEBANOWE");
-		data.setIban("ud2afvtcvab3y");
-
-		assertEquals(1, dataManager.addData(data));
-		int id=-1;
-		
-		for (DataObject daOb : dataManager.getAllData())
-		{
-			if (daOb.getCurrency() == "DESKI HEBANOWE")
-			{
-				id = (int) daOb.getId();
-			}
-		}
-		
-		Person person = new Person();
-		person.setName("Janek");
-		person.setYob(id);
-
-		assertEquals(1, personManager.addPerson(person));
-
-        // Data verification
-        
-        DataObject testDO=new DataObject();
-		Person testP=new Person();
-		for (DataObject daOb : dataManager.getAllData())
-		{
-			if (daOb.getCurrency() == "DESKI HEBANOWE")
-			{
-				testDO = daOb;
-			}
-		}
-		
-		for (Person pe : personManager.getAllPersons())
-		{
-			if (pe.getYob() == testDO.getId())
-			{
-				testP = pe;
-			}
-		}
-		
-		assertEquals(testDO.getId(), testP.getYob());
-		
-    }
 	
 	@Test
 	public void findDataObjectsPeople() throws Exception {
@@ -145,22 +99,15 @@ public class RelationTest extends DBTestCase {
 		List<Person> peopleAssignedToRed = personManager.getPersonByDataObjectId(tmpDataObject.getId());
 		
 		assertEquals(2, peopleAssignedToRed.size());
+		
+		peopleAssignedToRed.sort(new Comparator<Person>() {
+		@Override
+		public int compare(Person p1, Person p2) {
+			 return p1.getName().compareTo(p2.getName());}});
 
-		
-		if (peopleAssignedToRed.get(0).getName()==name2)
-		{
-			assertEquals(tmpPerson1.getName(), peopleAssignedToRed.get(1).getName());
-			assertEquals(tmpPerson2.getName(), peopleAssignedToRed.get(0).getName());
-		}
-		else {
-			assertEquals(tmpPerson1.getName(), peopleAssignedToRed.get(0).getName());
-			assertEquals(tmpPerson2.getName(), peopleAssignedToRed.get(1).getName());
-		}
-		
-		
-		
+		assertEquals(name1, peopleAssignedToRed.get(0).getName());
+		assertEquals(name2, peopleAssignedToRed.get(1).getName());
 	
-		
     }
 	
 }
