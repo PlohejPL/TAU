@@ -108,5 +108,16 @@ public class DataManagerImpl implements  DataManager {
         }
         return count;
     }
+    
+    public DataObject getDataByColor(String color){
+    	List<DataObject> data = getAllData();
+    	DataObject result = new DataObject();
+    	for (DataObject tmp:data){
+    		if (tmp.getColor().equals(color)){
+    			result = tmp;
+    		}
+    	}
+    	return result;
+    }
 
 }

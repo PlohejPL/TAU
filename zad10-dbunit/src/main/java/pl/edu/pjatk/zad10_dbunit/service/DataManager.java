@@ -15,4 +15,5 @@ public interface DataManager {
 	public List<DataObject> getAllData();
 	public int updateData(DataObject data);
 	public int deleteData(int id);
+	public DataObject getDataByColor(String color);
 }

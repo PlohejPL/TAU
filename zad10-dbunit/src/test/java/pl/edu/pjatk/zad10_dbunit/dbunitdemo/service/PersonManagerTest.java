@@ -83,8 +83,10 @@ public class PersonManagerTest extends DBTestCase {
 
         IDataSet dbDataSet = this.getConnection().createDataSet();
         ITable actualTable = dbDataSet.getTable("PERSON");
+        ITable tmpTable = DefaultColumnFilter.excludedColumnsTable
+                (actualTable, new String[]{"dataObjectId"});
         ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
-                (actualTable, new String[]{"ID"});
+                (tmpTable, new String[]{"ID"});
         IDataSet expectedDataSet = getDataSet("dataset-pm-add-check.xml");
         ITable expectedTable = expectedDataSet.getTable("PERSON");
 

@@ -6,6 +6,7 @@ public class Person {
 	
 	private String name;
 	private int yob;
+	private long dataObject_id;
 	
 	public Person() {
 	}
@@ -32,6 +33,12 @@ public class Person {
 	}
 	public void setYob(int yob) {
 		this.yob = yob;
+	}
+	public long getDataObject_id() {
+		return dataObject_id;
+	}
+	public void setDataObject_id(long dataObject_id) {
+		this.dataObject_id = dataObject_id;
 	}
 	
 }

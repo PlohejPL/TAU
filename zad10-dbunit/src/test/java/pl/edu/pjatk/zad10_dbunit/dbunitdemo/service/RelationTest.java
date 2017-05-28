@@ -24,6 +24,7 @@ import pl.edu.pjatk.zad10_dbunit.service.PersonManagerImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 
 @RunWith(JUnit4.class)
 public class RelationTest extends DBTestCase {
@@ -121,6 +122,44 @@ public class RelationTest extends DBTestCase {
 		}
 		
 		assertEquals(testDO.getId(), testP.getYob());
+		
+    }
+	
+	@Test
+	public void findDataObjectsPeople() throws Exception {
+		DatabaseOperation.CLEAN_INSERT.execute(this.getConnection(), getDataSet("dataset-rl.xml"));
+		String name1="Genowefa", name2="Janusz";
+		Person tmpPerson1, tmpPerson2;
+		DataObject tmpDataObject;
+		tmpDataObject = dataManager.getDataByColor("Red");
+		tmpPerson1 = personManager.getPersonByName(name1);
+		tmpPerson1.setDataObject_id(tmpDataObject.getId());
+		personManager.updatePerson(tmpPerson1);
+		
+		tmpPerson2 = personManager.getPersonByName(name2);
+		tmpPerson2.setDataObject_id(tmpDataObject.getId());
+		personManager.updatePerson(tmpPerson2);
+		
+
+
+		List<Person> peopleAssignedToRed = personManager.getPersonByDataObjectId(tmpDataObject.getId());
+		
+		assertEquals(2, peopleAssignedToRed.size());
+
+		
+		if (peopleAssignedToRed.get(0).getName()==name2)
+		{
+			assertEquals(tmpPerson1.getName(), peopleAssignedToRed.get(1).getName());
+			assertEquals(tmpPerson2.getName(), peopleAssignedToRed.get(0).getName());
+		}
+		else {
+			assertEquals(tmpPerson1.getName(), peopleAssignedToRed.get(0).getName());
+			assertEquals(tmpPerson2.getName(), peopleAssignedToRed.get(1).getName());
+		}
+		
+		
+		
+	
 		
     }
 	
