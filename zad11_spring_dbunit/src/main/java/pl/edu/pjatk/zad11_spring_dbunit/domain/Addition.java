@@ -11,13 +11,13 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 		@NamedQuery(name = "addition.all", query = "Select a from Addition a"),
 		@NamedQuery(name = "addition.byName", query = "Select a from Addition a WHERE a.name = :name"),
-		@NamedQuery(name = "addition.update", query = "Update Addition a Set a.name = :name , a.used = :used Where id = :id")
+		@NamedQuery(name = "addition.update", query = "Update Addition a Set a.name = :name , a.pizzaId = :pizzaId Where id = :id")
 })
 public class Addition {
 
 	private Long id;
 	private String name;
-	private Boolean used = false;
+	private Long pizzaId;
 	
 	public Addition () {
 		
@@ -44,13 +44,15 @@ public class Addition {
 	public void setMake(String name) {
 		this.name = name;
 	}
-	
-	public Boolean isUsed() {
-		return used;
+
+	public Long getPizzaID() {
+		return pizzaId;
 	}
 
-	public void setUsed(Boolean used) {
-		this.used = used;
+	public void setPizzaID(Long pizzaID) {
+		this.pizzaId = pizzaID;
 	}
+	
+	
 
 }

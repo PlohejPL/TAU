@@ -11,13 +11,14 @@ public interface PizzaMaker {
 	List<Pizza> getAllPizzas();
 	void updatePizza(Pizza pizza);
 	void deletePizza(Pizza pizza);
-	Pizza findByName(String pin);
+	Pizza findPizzaByName(String name);
 	
 	Long addAddition(Addition addition);
 	List<Addition> getAdditions	();
 	void deleteAddition(Addition addition);
 	void updateAddition(Addition addition);
 	Addition findAdditionById(Long id);
+	Addition findAdditionByName(String name);
 
 	/*List<Car> getOwnedCars(Person person);
 	void sellCar(Long personId, Long carId);

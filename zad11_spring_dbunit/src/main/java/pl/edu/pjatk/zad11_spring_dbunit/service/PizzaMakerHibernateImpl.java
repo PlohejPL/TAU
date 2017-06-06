@@ -40,19 +40,13 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	public void deletePizza(Pizza pizza) {
 		pizza = (Pizza) sessionFactory.getCurrentSession().get(Pizza.class,
 				pizza.getId());
-		
-		// lazy loading here
-		for (Addition add : pizza.getAdditions()) {
-			add.setUsed(false);
-			sessionFactory.getCurrentSession().update(add);
-		}
 
 		sessionFactory.getCurrentSession().delete(pizza);
 
 	}
 
 	@Override
-	public Pizza findByName(String name) {
+	public Pizza findPizzaByName(String name) {
 		return (Pizza) sessionFactory.getCurrentSession().getNamedQuery("addition.byName").setString("name", name).uniqueResult();
 	}
 
@@ -94,9 +88,16 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	public void updateAddition(Addition addition) {
 		sessionFactory.getCurrentSession().getNamedQuery("addition.update")
 		.setParameter("name", addition.getName())
-		.setParameter("used", addition.isUsed())
+		.setParameter("pizzaId", addition.getPizzaID())
 		.setParameter("id", addition.getId()).executeUpdate();
 		
+	}
+
+	@Override
+	public Addition findAdditionByName(String name) {
+		// TODO Auto-generated method stub
+		return (Pizza) sessionFactory.getCurrentSession().getNamedQuery("addition.byName").setString("name", name).uniqueResult();
+		return null;
 	}
 
 }

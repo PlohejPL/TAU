@@ -89,7 +89,7 @@ public class PizzaMakerBDUnitTest {
 	
 	@Test
 	@DatabaseSetup("/fullData.xml")
-	@ExpectedDatabase(value = "/addPizzaData.xml", table = "Addition", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@ExpectedDatabase(value = "/addAdditionData.xml", table = "Addition", assertionMode = DatabaseAssertionMode.NON_STRICT)
 	public void addAdditionTest() {
 	    assertEquals(1, sellingManager.getAdditions().size());
 	    
@@ -106,6 +106,11 @@ public class PizzaMakerBDUnitTest {
 	@Test
 	@DatabaseSetup("/fullData2.xml")
 	public void moreAdvancedBusinessMethodTest() {
+		Pizza p = new Pizza("Peperoni");
+		Addition a = new Addition("Salami");
+		sellingManager.addPizza(p);
+		p = sellingManager.findByName(p.getName());
+		a.setPizzaID(p.getId());
 		assertEquals(5, 6);
   }
 }

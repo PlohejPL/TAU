@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NamedQueries({ 
 	@NamedQuery(name = "pizza.all", query = "Select p from Pizza p"),
 	@NamedQuery(name = "person.byPin", query = "Select p from Person p where p.pin = :pin"),
-	@NamedQuery(name = "pizza.update", query = "Update pizza p Set p.name = :name , p.additons = :additions Where id = :id")
+	@NamedQuery(name = "pizza.update", query = "Update pizza p Set p.name = :name Where id = :id")
 })
 public class Pizza {
 
