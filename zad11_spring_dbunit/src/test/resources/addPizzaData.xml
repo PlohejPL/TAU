@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <PIZZA ID="1" NAME="Margharita"/>
+  <PIZZA ID="2" NAME="Funghi"/>
+</dataset>
