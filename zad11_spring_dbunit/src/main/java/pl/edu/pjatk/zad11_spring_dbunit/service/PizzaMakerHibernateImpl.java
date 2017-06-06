@@ -79,7 +79,7 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	public void updatePizza(Pizza pizza) {
 		sessionFactory.getCurrentSession().getNamedQuery("pizza.update")
 		.setParameter("name", pizza.getName())
-		.setParameter("additions", pizza.getAdditions())
+		//.setParameter("additions", pizza.getAdditions())
 		.setParameter("id", pizza.getId()).executeUpdate();
 		
 	}
@@ -96,8 +96,7 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	@Override
 	public Addition findAdditionByName(String name) {
 		// TODO Auto-generated method stub
-		return (Pizza) sessionFactory.getCurrentSession().getNamedQuery("addition.byName").setString("name", name).uniqueResult();
-		return null;
+		return (Addition) sessionFactory.getCurrentSession().getNamedQuery("addition.byName").setString("name", name).uniqueResult();
 	}
 
 }

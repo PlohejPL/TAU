@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @NamedQueries({
@@ -45,6 +48,7 @@ public class Addition {
 		this.name = name;
 	}
 
+	//@ManyToOne(cascade = CascadeType.ALL)
 	public Long getPizzaID() {
 		return pizzaId;
 	}

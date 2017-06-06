@@ -84,8 +84,7 @@ public class PizzaMakerBDUnitTest {
         assertEquals(1, sellingManager.getAllPizzas().size());
     }	
 	
-	
-	//ADDITION TESTS	
+	//ADDITIONS TESTS	
 	
 	@Test
 	@DatabaseSetup("/fullData.xml")
@@ -99,8 +98,7 @@ public class PizzaMakerBDUnitTest {
     }
 
 
-
-// More advanced business method tests
+	// More advanced business method tests
 
 	
 	@Test
@@ -109,8 +107,8 @@ public class PizzaMakerBDUnitTest {
 		Pizza p = new Pizza("Peperoni");
 		Addition a = new Addition("Salami");
 		sellingManager.addPizza(p);
-		p = sellingManager.findByName(p.getName());
+		p = sellingManager.findPizzaByName(p.getName());
 		a.setPizzaID(p.getId());
-		assertEquals(5, 6);
+		assertEquals(p.getId(), sellingManager.findAdditionByName(a.getName()).getPizzaID());
   }
 }

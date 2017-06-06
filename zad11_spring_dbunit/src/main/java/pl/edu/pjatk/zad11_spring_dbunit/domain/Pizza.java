@@ -16,7 +16,7 @@ public class Pizza {
 
 	private String name;// = "unknown";
 
-	private List<Addition> additions;// = new ArrayList<Addition>();
+	//private List<Addition> additions;// = new ArrayList<Addition>();
 	
 	public Pizza () {
 		
@@ -43,7 +43,7 @@ public class Pizza {
 	}
 
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	/*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@OneToMany(orphanRemoval=true)
     //@JoinColumn(name="OWNER")
 	public List<Addition> getAdditions() {
@@ -51,5 +51,5 @@ public class Pizza {
 	}
 	public void setAdditions(List<Addition> additions) {
 		this.additions = additions;
-	}
+	}*/
 }
