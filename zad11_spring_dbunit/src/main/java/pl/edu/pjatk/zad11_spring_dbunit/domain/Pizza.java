@@ -7,16 +7,17 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({ 
 	@NamedQuery(name = "pizza.all", query = "Select p from Pizza p"),
-	@NamedQuery(name = "person.byPin", query = "Select p from Person p where p.pin = :pin"),
-	@NamedQuery(name = "pizza.update", query = "Update pizza p Set p.name = :name Where id = :id")
+	@NamedQuery(name = "pizza.update", query = "Update Pizza p Set p.name = :name Where p.id = :id"),
+	@NamedQuery(name = "pizza.delete", query = "Delete from Pizza p where p.id = :id")/*,
+	@NamedQuery(name = "pizza.additions", query = "Select ad from Addition ad")*/
 })
 public class Pizza {
 
 	private Long id;
 
-	private String name;// = "unknown";
+	private String name;
 
-	//private List<Addition> additions;// = new ArrayList<Addition>();
+	private List<Addition> additions;// = new ArrayList<Addition>();
 	
 	public Pizza () {
 		
@@ -43,7 +44,7 @@ public class Pizza {
 	}
 
 
-	/*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@OneToMany(orphanRemoval=true)
     //@JoinColumn(name="OWNER")
 	public List<Addition> getAdditions() {
@@ -51,5 +52,5 @@ public class Pizza {
 	}
 	public void setAdditions(List<Addition> additions) {
 		this.additions = additions;
-	}*/
+	}
 }

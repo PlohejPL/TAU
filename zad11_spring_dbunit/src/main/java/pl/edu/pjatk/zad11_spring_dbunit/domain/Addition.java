@@ -14,13 +14,12 @@ import org.hibernate.annotations.CascadeType;
 @NamedQueries({
 		@NamedQuery(name = "addition.all", query = "Select a from Addition a"),
 		@NamedQuery(name = "addition.byName", query = "Select a from Addition a WHERE a.name = :name"),
-		@NamedQuery(name = "addition.update", query = "Update Addition a Set a.name = :name , a.pizzaId = :pizzaId Where id = :id")
+		@NamedQuery(name = "addition.update", query = "Update Addition a Set a.name = :name Where id = :id")
 })
 public class Addition {
 
 	private Long id;
 	private String name;
-	private Long pizzaId;
 	
 	public Addition () {
 		
@@ -44,17 +43,8 @@ public class Addition {
 		return name;
 	}
 
-	public void setMake(String name) {
+	public void setName(String name) {
 		this.name = name;
-	}
-
-	//@ManyToOne(cascade = CascadeType.ALL)
-	public Long getPizzaID() {
-		return pizzaId;
-	}
-
-	public void setPizzaID(Long pizzaID) {
-		this.pizzaId = pizzaID;
 	}
 	
 	

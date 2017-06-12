@@ -42,6 +42,7 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 				pizza.getId());
 
 		sessionFactory.getCurrentSession().delete(pizza);
+		//sessionFactory.getCurrentSession().getNamedQuery("pizza.delete").setParameter("id", pizza.getId()).executeUpdate();
 
 	}
 
@@ -58,7 +59,7 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 
 	@Override
 	public List<Addition> getAdditions() {
-		return sessionFactory.getCurrentSession().getNamedQuery("additions.all")
+		return sessionFactory.getCurrentSession().getNamedQuery("addition.all")
 				.list();
 	}
 
@@ -88,7 +89,6 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	public void updateAddition(Addition addition) {
 		sessionFactory.getCurrentSession().getNamedQuery("addition.update")
 		.setParameter("name", addition.getName())
-		.setParameter("pizzaId", addition.getPizzaID())
 		.setParameter("id", addition.getId()).executeUpdate();
 		
 	}
@@ -97,6 +97,12 @@ public class PizzaMakerHibernateImpl implements PizzaMaker {
 	public Addition findAdditionByName(String name) {
 		// TODO Auto-generated method stub
 		return (Addition) sessionFactory.getCurrentSession().getNamedQuery("addition.byName").setString("name", name).uniqueResult();
+	}
+
+	@Override
+	public List<Addition> findPizzasAdditions(Pizza pizza) {
+		//return (List<Addition>)sessionFactory.getCurrentSession().getNamedQuery("pizza.additions").setParameter("id", pizza.getId()).uniqueResult();
+		return pizza.getAdditions();
 	}
 
 }

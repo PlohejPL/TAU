@@ -12,6 +12,7 @@ public interface PizzaMaker {
 	void updatePizza(Pizza pizza);
 	void deletePizza(Pizza pizza);
 	Pizza findPizzaByName(String name);
+	List<Addition> findPizzasAdditions(Pizza pizza);
 	
 	Long addAddition(Addition addition);
 	List<Addition> getAdditions	();
