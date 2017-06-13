@@ -22,3 +22,25 @@ SCENARIO("Sorting array with Quick Sort") {
         }
     }
 }
+
+SCENARIO("Sorting big array with Quick Sort") {
+    QuickSortR qs;
+    const int size = 100;
+    int tab[size];
+    for(int i=0; i<size; i++){
+		tab[i]=size - i;
+	}
+    GIVEN("We have an unordered array") {
+        REQUIRE(&tab != NULL);
+        WHEN("We sort the array") {
+            REQUIRE_NOTHROW(qs.do_sort(tab, size));
+            THEN("Array should be sorted") {
+				for(int i=0; i<size-1; i++){
+					REQUIRE(tab[i] < tab[i+1]);
+				}
+            }
+        }
+    }
+}
+
+
