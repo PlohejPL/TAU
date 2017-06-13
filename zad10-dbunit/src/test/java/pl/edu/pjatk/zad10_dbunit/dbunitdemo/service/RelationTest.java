@@ -100,10 +100,10 @@ public class RelationTest extends DBTestCase {
 		
 		assertEquals(2, peopleAssignedToRed.size());
 		
-		peopleAssignedToRed.sort(new Comparator<Person>() {
+		/*peopleAssignedToRed.sort(new Comparator<Person>() {
 		@Override
 		public int compare(Person p1, Person p2) {
-			 return p1.getName().compareTo(p2.getName());}});
+			 return p1.getName().compareTo(p2.getName());}});*/
 
 		assertEquals(name1, peopleAssignedToRed.get(0).getName());
 		assertEquals(name2, peopleAssignedToRed.get(1).getName());
