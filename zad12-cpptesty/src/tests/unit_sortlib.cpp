@@ -25,7 +25,7 @@ SCENARIO("Sorting array with Quick Sort") {
 
 SCENARIO("Sorting big array with Quick Sort") {
     QuickSortR qs;
-    const int size = 100;
+    const int size = 10;
     int tab[size];
     for(int i=0; i<size; i++){
 		tab[i]=size - i;
