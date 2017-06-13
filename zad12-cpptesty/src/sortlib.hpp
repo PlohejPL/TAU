@@ -1,25 +1,7 @@
 #ifndef __SORTLIB_HPP__
 #define __SORTLIB_HPP__
 
-/*class Sort
-{
-public :
-	string name;
-	virtual void do_sort(int A[], int n)=0;
-};*/
-
-class HeapSort// : public Sort
-{
-public:
-	HeapSort();
-	void do_sort(int A[], int n);
-private:
-	void heapify(int *tab, int heap_size, int i);
-	void build_max_heap(int *tab, int rozmiar);
-	void heapsort(int *tab, int rozmiar);
-};
-
-class QuickSortR// : public Sort
+class QuickSortR
 {
 public:
 	QuickSortR();
