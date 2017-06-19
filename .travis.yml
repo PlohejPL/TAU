@@ -2,4 +2,5 @@ language: cpp
 compiler: gcc
 os: linux
 script:
+- cd zad12-cpptesty
 - make tests
